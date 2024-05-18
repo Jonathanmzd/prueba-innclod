@@ -27,4 +27,20 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|confirmed|min:8',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'name.string' => 'El campo nombre debe ser una cadena de texto.',
+            'name.max' => 'El campo nombre no puede exceder los 255 caracteres.',
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El campo correo electrónico debe ser una dirección de correo válida.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'password.required' => 'El campo contraseña es obligatorio.',
+            'password.string' => 'El campo contraseña debe ser una cadena de texto.',
+            'password.confirmed' => 'La confirmación de contraseña no coincide.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+        ];
+    }
 }

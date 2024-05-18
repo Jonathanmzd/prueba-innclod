@@ -26,4 +26,13 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El campo correo electrónico debe ser una dirección de correo válida.',
+            'password.required' => 'El campo contraseña es obligatorio.',
+        ];
+    }
 }
