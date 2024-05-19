@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  public nombreUsuario = localStorage.getItem('nombre_user');
 
   constructor(private auth: AuthService,
     private router: Router){
