@@ -26,4 +26,15 @@ class Documento extends Model
         'doc_id_tipo' => 'integer',
         'doc_id_proceso' => 'integer',
     ];
+
+    public function tipo()
+    {
+        return $this->belongsTo(TipoDocumento::class, 'doc_id_tipo', 'tip_id');
+    }
+
+    public function proceso()
+    {
+        return $this->belongsTo(Proceso::class, 'doc_id_proceso', 'pro_id');
+    }
+
 }

@@ -11,21 +11,24 @@ class DocumentoController extends Controller
     public function index()
     {
         try {
-            $documentos = Documento::all();
+            $DocNombre = isset($_GET['doc_nombre']) ? $_GET['doc_nombre'] : "";
+
+            $documentos = Documento::with('tipo', 'proceso');
+
+            if ($DocNombre != "")
+                $documentos->where('doc_nombre', 'like', '%' . $DocNombre . '%');
+
+            $documentos = $documentos->orderBy('doc_id', 'desc')->paginate(5);
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'data' => $documentos,
-                    'message' => 'Lista obtenida correctamente'
-                ]
+                'status' => true,
+                'data' => $documentos,
+                'message' => 'Lista obtenida correctamente'
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al obtener la lista'
-                ]
+                'status' => false,
+                'message' => 'Error al obtener la lista'
             ], 500);
         }
     }
@@ -39,10 +42,8 @@ class DocumentoController extends Controller
             return $nuevoNumero;
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al obtener el último número',
-                ]
+                'status' => false,
+                'message' => 'Error al obtener el último número',
             ], 500);
         }
     }
@@ -56,18 +57,14 @@ class DocumentoController extends Controller
             $documento = Documento::create($data);
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'message' => 'Creado exitosamente',
-                    'documento' => $documento
-                ]
+                'status' => true,
+                'message' => 'Creado exitosamente',
+                'documento' => $documento
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al crear',
-                ]
+                'status' => false,
+                'message' => 'Error al crear',
             ], 500);
         }
     }
@@ -78,18 +75,14 @@ class DocumentoController extends Controller
             $documento = Documento::findOrFail($id);
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'data' => $documento,
-                    'message' => 'Obtenido correctamente'
-                ]
+                'status' => true,
+                'data' => $documento,
+                'message' => 'Obtenido correctamente'
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'No encontrado'
-                ]
+                'status' => false,
+                'message' => 'No encontrado'
             ], 500);
         }
     }
@@ -104,18 +97,14 @@ class DocumentoController extends Controller
             $documento->update($data);
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'message' => 'Actualizado exitosamente',
-                    'documento' => $documento
-                ]
+                'status' => true,
+                'message' => 'Actualizado exitosamente',
+                'documento' => $documento
             ], 200);
         } catch (\Throwable $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al actualizar',
-                ]
+                'status' => false,
+                'message' => 'Error al actualizar',
             ], 500);
         }
     }
@@ -127,17 +116,13 @@ class DocumentoController extends Controller
             $documento->delete();
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'message' => 'Eliminado correctamente'
-                ]
+                'status' => true,
+                'message' => 'Eliminado correctamente'
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al eliminar',
-                ]
+                'status' => false,
+                'message' => 'Error al eliminar',
             ], 500);
         }
     }

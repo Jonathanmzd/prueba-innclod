@@ -22,29 +22,23 @@ class LoginController extends Controller
             $user = Auth::user();
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'message' => 'Inicio de sesión correcto',
-                    'token' => $token,
-                    'user' => [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                    ]
+                'status' => true,
+                'message' => 'Inicio de sesión correcto',
+                'token' => $token,
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
                 ]
             ], 200);
         } catch (AuthenticationException $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => $e->getMessage(),
-                ]
+                'status' => false,
+                'message' => $e->getMessage(),
             ], 401);
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error en el servidor',
-                ]
+                'status' => false,
+                'message' => 'Error en el servidor',
             ], 500);
         }
     }

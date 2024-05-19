@@ -3,7 +3,9 @@
 use App\Http\Controllers\Api\DocumentoController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\ProcesoController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\TipoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,10 @@ Route::post('documento', [DocumentoController::class, 'store']);
 Route::get('documento/{id}', [DocumentoController::class, 'show']);
 Route::match(['put', 'patch'], 'documento/{id}', [DocumentoController::class, 'update']);
 Route::delete('documento/{id}', [DocumentoController::class, 'destroy']);
+
+Route::get('tipo', [TipoController::class, 'index']);
+Route::get('proceso', [ProcesoController::class, 'index']);
+
 Route::group([
     "middleware" => ["auth:api"]
 ], function(){

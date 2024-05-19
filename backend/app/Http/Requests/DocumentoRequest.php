@@ -25,7 +25,6 @@ class DocumentoRequest extends FormRequest
             'doc_nombre' => 'required|string|max:50',
             'doc_id_tipo' => 'required|integer',
             'doc_id_proceso' => 'required|integer',
-            'doc_codigo' => 'required|integer',
             'doc_contenido' => 'required|string|max:4000',
         ];
     }

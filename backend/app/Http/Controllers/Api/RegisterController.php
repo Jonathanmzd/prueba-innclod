@@ -28,22 +28,18 @@ class RegisterController extends Controller
             ]);
 
             return response()->json([
-                'data' => [
-                    'status' => true,
-                    'message' => 'Usuario creado exitosamente',
-                    'user' => [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                    ]
-                ],
+                'status' => true,
+                'message' => 'Usuario creado exitosamente',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'data' => [
-                    'status' => false,
-                    'message' => 'Error al crear el usuario',
-                ]
+                'status' => false,
+                'message' => 'Error al crear el usuario',
             ], 500);
         }
     }
