@@ -25,7 +25,7 @@ DB_DATABASE=innclod
 DB_USERNAME=root
 DB_PASSWORD=
 ```
-# **Nota** se debe crear la base de datos **innclod** de mysql en phpadmin o cliente de preferencia
+### **Nota** se debe crear la base de datos **innclod** de mysql en phpadmin o cliente de preferencia
 
 6) instalar las dependencias, ingresando a terminal y ejecutar lo siguiente:
 ```sh
@@ -64,6 +64,8 @@ npm install
 ```sh
 npm start
 ```
+
+### iniciar el proyecto en  http://localhost:4200/
 
 ## Imagenes del proyecto:
 
