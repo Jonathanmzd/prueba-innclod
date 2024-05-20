@@ -1,0 +1,82 @@
+<!-- Modal -->
+<div class="modal bg-modal fade" [ngClass]="[visible ? 'show' : '']"
+  [ngStyle]="{ 'display': visible ? 'block': 'none' }" id="staticBackdrop" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-light">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ title }}</h1>
+        <button type="button" class="btn-close bg-light" (click)="closeModal();"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formulario" (ngSubmit)="submit()">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="doc_nombre">Nombre</label>
+                      <input type="text" class="form-control" id="doc_nombre" formControlName="doc_nombre" />
+                      <div
+                        *ngIf="formulario.controls['doc_nombre'].invalid && (formulario.controls['doc_nombre'].dirty || formulario.controls['doc_nombre'].touched)">
+                        Obligatorio.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="doc_id_tipo">Tipo Documento</label>
+                      <select class="form-control" id="doc_id_tipo" formControlName="doc_id_tipo">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let item of listTipoDocumento" value="{{ item.tip_id }}">{{ item.tip_nombre }}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="formulario.controls['doc_id_tipo'].invalid && (formulario.controls['doc_id_tipo'].dirty || formulario.controls['doc_id_tipo'].touched)">
+                        Obligatorio.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="doc_id_proceso">Proceso</label>
+                      <select class="form-control" id="doc_id_proceso" formControlName="doc_id_proceso">
+                        <option value="">Seleccione</option>
+                        <option *ngFor="let item of listTipoProceso" value="{{ item.pro_id }}">{{ item.pro_nombre }}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="formulario.controls['doc_id_proceso'].invalid && (formulario.controls['doc_id_proceso'].dirty || formulario.controls['doc_id_proceso'].touched)">
+                        Obligatorio.
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <label for="doc_contenido">Contenido</label>
+                      <textarea class="form-control" id="doc_contenido" formControlName="doc_contenido"
+                        maxlength="4000"></textarea>
+                      <div
+                        *ngIf="formulario.controls['doc_contenido'].invalid && (formulario.controls['doc_contenido'].dirty || formulario.controls['doc_contenido'].touched)">
+                        Obligatorio.
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+
+            <div class="col-12 d-flex justify-content-center">
+              <button type="submit" *ngIf="action == 'Create' || action == 'Update'" [disabled]="formulario.invalid"
+                class="btn btn-primary btn-lg text-center">{{ action == 'Create' ? 'Guardar' : 'Actualizar' }}</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

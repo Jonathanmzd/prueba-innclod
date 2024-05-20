@@ -8,22 +8,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './pages/includes/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentsComponent } from './pages/documents/documents.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CreateComponent } from './pages/documents/modals/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

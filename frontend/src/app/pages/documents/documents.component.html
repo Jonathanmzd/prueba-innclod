@@ -1,1 +1,65 @@
-<p>documents works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2>Documentos</h2>
+      <button class="btn btn-primary" (click)="createNewDocument();">
+        Crear Nuevo
+      </button>
+
+      <modal-create-documen
+        [visible]="modalCreateDocument"
+        [title]="titleModal"
+        [documen]="documen"
+        [action]="actionButton"
+        (visibleChange)="modalCreateDocumentChange($event)"
+      ></modal-create-documen>
+    </div>
+
+    <div class="col-12">
+      <div class="row">
+        <div class="col-md-3 mt-4">
+          <label for="doc_nombre">Nombre Documento</label>
+          <input type="text" name="doc_nombre" id="doc_nombre" class="form-control"
+            (input)="selectChange($event, 'doc_nombre')">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Contenido</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of tableDocuments">
+            <td>{{ doc.doc_id }}</td>
+            <td>{{ doc.doc_nombre }}</td>
+            <td>{{ doc.tipo.tip_prefijo }}-{{ doc.proceso.pro_prefijo }}-{{ doc.doc_codigo }}</td>
+            <td>{{ doc.doc_contenido }}</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square icon-crud ms-2" (click)="updateDocument(doc);"></i>
+              <i class="fa-solid fa-trash icon-crud ms-2" (click)="deleteDocument(doc);"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 mt-3">
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li *ngFor="let item of links; let i = index" class="page-item {{ item.active ? 'active' : ''}}">
+            <button class="page-link" (click)="pagination(item.url)" [innerHTML]="item.label"></button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

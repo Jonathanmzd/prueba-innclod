@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit{
 
   }
 
+  /**
+   * Función para realizar el login
+   */
   submit() {
     let params = {
       "email" : this.formLogin.value.usuario,
@@ -38,6 +41,8 @@ export class LoginComponent implements OnInit{
       let token = res.data.token;
       let nombre_user = res.data.user.name;
       let id_user = res.data.user.id;
+
+      // Asignacion de variables
       localStorage.setItem('token', token);
       localStorage.setItem('nombre_user', nombre_user);
       localStorage.setItem('id_user', id_user);
