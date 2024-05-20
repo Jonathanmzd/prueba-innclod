@@ -23,17 +23,17 @@ use Illuminate\Support\Facades\Route;
 Route::post("register", [RegisterController::class, "register"]);
 Route::post("login", [LoginController::class, "login"]);
 
-Route::get('documento', [DocumentoController::class, 'index']);
-Route::post('documento', [DocumentoController::class, 'store']);
-Route::get('documento/{id}', [DocumentoController::class, 'show']);
-Route::match(['put', 'patch'], 'documento/{id}', [DocumentoController::class, 'update']);
-Route::delete('documento/{id}', [DocumentoController::class, 'destroy']);
-
-Route::get('tipo', [TipoController::class, 'index']);
-Route::get('proceso', [ProcesoController::class, 'index']);
-
 Route::group([
-    "middleware" => ["auth:api"]
-], function(){
+    'middleware' => ['auth:api']
+], function () {
     Route::get("logout", [LogoutController::class, "logout"]);
+
+    Route::get('documento', [DocumentoController::class, 'index']);
+    Route::post('documento', [DocumentoController::class, 'store']);
+    Route::get('documento/{id}', [DocumentoController::class, 'show']);
+    Route::match(['put', 'patch'], 'documento/{id}', [DocumentoController::class, 'update']);
+    Route::delete('documento/{id}', [DocumentoController::class, 'destroy']);
+
+    Route::get('tipo', [TipoController::class, 'index']);
+    Route::get('proceso', [ProcesoController::class, 'index']);
 });
