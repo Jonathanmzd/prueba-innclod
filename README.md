@@ -7,12 +7,15 @@
 ```sh
 git clone https://github.com/Jonathanmzd/prueba-innclod.git
 ```
-
-2) Copiar env.example 
+### dentro del lugar donde se descargo el repositorio se realiza lo siguiente:
    
-3) Crear archivo .env en la raiz, copiar lo de env.example dentro
+2) Abrir en el editor de preferencia, ingresar a la carpeta backend
 
-4) tener presente esta conexion
+3) Copiar el contenido de env.example 
+   
+4) Crear archivo .env en la raiz de la carpeta de backend, copiar lo de env.example dentro
+
+5) tener presente esta conexion
    
 ```env
 DB_CONNECTION=mysql
@@ -22,25 +25,26 @@ DB_DATABASE=innclod
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+**Nota** se debe crear la base de datos **innclod** de mysql en phpadmin o cliente de preferencia
 
-5) dentro del lugar donde se descargo el repositorio se realiza lo siguiente:
-   
+6) instalar las dependencias, ingresando a terminal y ejecutar lo siguiente:
 ```sh
 cd backend
 composer install 
 ```
 
-6) Realizar la creacion de la clave 
+7) Realizar la creacion de la clave, clave jwt
 ```sh
 php artisan key:generate
+php artisan jwt:secret
 ```
 
-7) realizar la ejecucion de las migraciones
+8) realizar la ejecucion de las migraciones
 ```sh
 php artisan migrate:refresh --seed
 ```
 
-8) Ejecutar el Backend
+9) Ejecutar el Backend
 ```sh
 php artisan serve
 ```
@@ -48,7 +52,9 @@ php artisan serve
 ## Iniciar Frontend
 
 1) dentro del lugar donde se descargo el repositorio se realiza lo siguiente:
-   
+
+Abrir una nueva terminal y ejecutar lo siguiente:
+
 ```sh
 cd frontend
 npm install 
